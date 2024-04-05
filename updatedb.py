@@ -27,7 +27,7 @@ def updatedb(name, email, score):
 def retrieve_leaderboard():
     conn = sqlite3.connect('quiz.db')
     c = conn.cursor()
-    c.execute('''SELECT * FROM leaderboard ORDER BY score ASC''')  # Adding ORDER BY clause to sort by score in ascending order
+    c.execute('''SELECT * FROM leaderboard ORDER BY score DSC''')  # Adding ORDER BY clause to sort by score in ascending order
     data = c.fetchall()
     conn.close()
     return data
