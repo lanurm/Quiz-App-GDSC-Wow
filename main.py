@@ -6,7 +6,6 @@ import updatedb
 app = Flask(__name__) 
   
   
-
 @app.route('/update/', methods = ['POST']) 
 def updateDb(): 
     data = request.json
@@ -15,7 +14,6 @@ def updateDb():
   
 @app.route('/leaderboard/', methods = ['GET']) 
 def leaderboardsz(): 
-
     return jsonify(updatedb.retrieve_leaderboard())
 
 
