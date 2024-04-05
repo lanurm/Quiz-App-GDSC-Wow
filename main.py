@@ -1,28 +1,24 @@
-from flask import Flask, jsonify, request 
+from flask import Flask, jsonify, request
+import updatedb
   
+import updatedb
 
 app = Flask(__name__) 
   
-@app.route('/', methods = ['GET', 'POST']) 
-def home(): 
-    if(request.method == 'GET'): 
   
-        data = "hello world"
-        return jsonify({'data': data}) 
-  
-  
-# @app.route('/home/<int:num>', methods = ['GET']) 
-# def disp(num): 
-  
-#     return jsonify({'data': num**2}) 
-
 
 @app.route('/update/', methods = ['POST']) 
 def updateDb(): 
-    print(request.json)
+    data = request.json
+    updatedb.updatedb(data['name'], data['email'], data['score'], data['time'])
     return jsonify(request.json)
   
-  
+@app.route('/leaderboard/', methods = ['GET']) 
+def leaderboardsz(): 
+
+    return jsonify(updatedb.retrieve_leaderboard())
+
+
 # driver function 
 if __name__ == '__main__': 
   
