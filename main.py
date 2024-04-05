@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 import updatedb
-  
-import updatedb
+from questions import getq
+
 
 app = Flask(__name__) 
   
@@ -12,9 +12,15 @@ def updateDb():
     updatedb.updatedb(data['name'], data['email'], data['score'], data['time'])
     return jsonify(request.json)
   
+
 @app.route('/leaderboard/', methods = ['GET']) 
 def leaderboardsz(): 
     return jsonify(updatedb.retrieve_leaderboard())
+
+
+@app.route('/questions/', methods = ['GET']) 
+def questions(): 
+    return jsonify(getq())
 
 
 # driver function 
